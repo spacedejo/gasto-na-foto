@@ -37,6 +37,24 @@
   font-weight: 700;
 }
 
+.analysis-result__new {
+  margin-top: 1rem;
+  min-height: 42px;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgb(34 199 169 / 35%);
+  border-radius: 0.75rem;
+  background: var(--primary-soft);
+  color: #9af1df;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.analysis-result__new:hover,
+.analysis-result__new:focus-visible {
+  border-color: var(--primary);
+  color: #c8fff4;
+}
+
 @media (min-width: 700px) {
   .analysis-result__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));

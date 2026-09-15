@@ -21,6 +21,21 @@ class ReceiptUploader extends HTMLElement {
     const input = this.querySelector("input");
     const content = this.querySelector(".receipt-uploader__content");
 
+    this.resetUploader = () => {
+      input.value = "";
+
+      if (this.previewUrl) {
+        URL.revokeObjectURL(this.previewUrl);
+        this.previewUrl = null;
+      }
+
+      content.innerHTML = `
+        <span class="receipt-uploader__icon" aria-hidden="true">🧾</span>
+        <span class="receipt-uploader__title">Clique para selecionar um comprovante</span>
+        <span class="receipt-uploader__hint">A imagem ficará somente neste navegador</span>
+      `;
+    };
+
     this.handleUploadStatus = (event) => {
       const hint = this.querySelector(".receipt-uploader__hint");
 
@@ -28,6 +43,7 @@ class ReceiptUploader extends HTMLElement {
     };
 
     document.addEventListener("receipt-upload-status", this.handleUploadStatus);
+    document.addEventListener("receipt-new-analysis", this.resetUploader);
 
     input.addEventListener("change", () => {
       const [file] = input.files;
@@ -54,6 +70,7 @@ class ReceiptUploader extends HTMLElement {
   disconnectedCallback() {
     if (this.previewUrl) URL.revokeObjectURL(this.previewUrl);
     document.removeEventListener("receipt-upload-status", this.handleUploadStatus);
+    document.removeEventListener("receipt-new-analysis", this.resetUploader);
   }
 
   escapeHtml(value) {

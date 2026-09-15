@@ -9,10 +9,13 @@ class ReceiptAnalysisResult extends HTMLElement {
           <div><dt>Valor total</dt><dd data-field="valorTotal"></dd></div>
           <div><dt>Moeda</dt><dd data-field="moeda"></dd></div>
         </dl>
+        <button class="analysis-result__new" type="button">+ Analisar outro comprovante</button>
       </section>
     `;
 
     this.panel = this.querySelector(".analysis-result");
+    this.newAnalysisButton = this.querySelector(".analysis-result__new");
+    this.newAnalysisButton.addEventListener("click", this.startNewAnalysis);
     document.addEventListener("receipt-analysis-result", this.showResult);
     document.addEventListener("receipt-analysis-clear", this.clearResult);
   }
@@ -20,6 +23,7 @@ class ReceiptAnalysisResult extends HTMLElement {
   disconnectedCallback() {
     document.removeEventListener("receipt-analysis-result", this.showResult);
     document.removeEventListener("receipt-analysis-clear", this.clearResult);
+    this.newAnalysisButton.removeEventListener("click", this.startNewAnalysis);
   }
 
   showResult = (event) => {
@@ -34,6 +38,14 @@ class ReceiptAnalysisResult extends HTMLElement {
 
   clearResult = () => {
     this.panel.hidden = true;
+    this.querySelectorAll("[data-field]").forEach((field) => {
+      field.textContent = "";
+    });
+  };
+
+  startNewAnalysis = () => {
+    this.clearResult();
+    document.dispatchEvent(new CustomEvent("receipt-new-analysis"));
   };
 
   setField(field, value) {
