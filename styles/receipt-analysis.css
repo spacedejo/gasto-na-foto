@@ -1,0 +1,44 @@
+.analysis-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgb(34 199 169 / 24%);
+  border-radius: 0.9rem;
+  background: var(--primary-soft);
+}
+
+.analysis-result__eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.analysis-result__grid {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.analysis-result__grid div {
+  min-width: 0;
+}
+
+.analysis-result__grid dt {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.analysis-result__grid dd {
+  margin: 0.2rem 0 0;
+  overflow-wrap: anywhere;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+@media (min-width: 700px) {
+  .analysis-result__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

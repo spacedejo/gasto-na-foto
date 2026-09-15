@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicação para fotografar e organizar comprovantes"
+    />
+    <title>Gasto na Foto</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/receipt-analysis.css" />
+    <script src="scripts/storage.js" defer></script>
+    <script src="components/app-header.js" defer></script>
+    <script src="components/app-sidebar.js" defer></script>
+    <script src="components/expense-summary.js" defer></script>
+    <script src="components/receipt-uploader.js" defer></script>
+    <script src="components/receipt-analysis-result.js" defer></script>
+    <script src="components/expense-history.js" defer></script>
+    <script src="components/full-expense-history.js" defer></script>
+    <script src="components/sample-receipts.js" defer></script>
+    <script src="components/about-project.js" defer></script>
+    <script src="components/app-footer.js" defer></script>
+    <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/api.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <app-header></app-header>
+      <div class="dashboard-layout">
+        <app-sidebar></app-sidebar>
+        <main class="dashboard-content">
+          <div class="app-view" data-app-view="overview">
+            <section class="dashboard-intro" id="visao-geral">
+              <p class="dashboard-intro__eyebrow">Painel financeiro</p>
+              <h1 class="dashboard-intro__title">Visão geral</h1>
+              <p class="dashboard-intro__description">Fotografe o comprovante. A IA anota para você.</p>
+            </section>
+            <expense-summary></expense-summary>
+            <section class="dashboard-section" id="analisar">
+              <div class="section-heading">
+                <div>
+                  <p class="section-heading__eyebrow">Nova análise</p>
+                  <h2 class="section-heading__title">Analisar comprovante</h2>
+                </div>
+                <span class="section-heading__badge">Imagem</span>
+              </div>
+              <receipt-uploader></receipt-uploader>
+              <receipt-analysis-result></receipt-analysis-result>
+            </section>
+            <expense-history></expense-history>
+          </div>
+          <div class="app-view" data-app-view="history" hidden>
+            <full-expense-history></full-expense-history>
+          </div>
+          <div class="app-view" data-app-view="samples" hidden>
+            <sample-receipts></sample-receipts>
+          </div>
+          <div class="app-view" data-app-view="about" hidden>
+            <about-project></about-project>
+          </div>
+          <app-footer></app-footer>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
